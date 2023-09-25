@@ -27,6 +27,9 @@ public class Employee {
         return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
     }
 
+    public String getFullNameEmployee() {
+        return String.format("%s %s", firstName, lastName);
+    }
     @Override
     public int hashCode() {
         return Objects.hash(firstName, lastName);
