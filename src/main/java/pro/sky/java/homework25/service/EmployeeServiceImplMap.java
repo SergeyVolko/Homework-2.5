@@ -16,7 +16,7 @@ public class EmployeeServiceImplMap implements EmployeeService {
     @Override
     public Employee add(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        String key = getFIO(firstName, lastName);
+        String key = employee.getFullNameEmployee();
         if (employeeMap.size() >= MAX_EMPLOYEE) {
             String message = String.format("Места для сотрудника %s нет.", employee);
             throw new EmployeeStorageIsFullException(message);
@@ -32,14 +32,13 @@ public class EmployeeServiceImplMap implements EmployeeService {
     @Override
     public Employee remove(String firstName, String lastName) {
         Employee employee = find(firstName, lastName);
-        employeeMap.remove(getFIO(firstName, lastName));
-        return employee;
+        return employeeMap.remove(employee.getFullNameEmployee());
     }
 
     @Override
     public Employee find(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if (!employeeMap.containsKey(getFIO(firstName, lastName))) {
+        if (!employeeMap.containsKey(employee.getFullNameEmployee())) {
             String message = String.format("Сотрудник %s не найден", employee);
             throw new EmployeeNotFoundException(message);
         }
@@ -50,9 +49,4 @@ public class EmployeeServiceImplMap implements EmployeeService {
     public Collection<Employee> getAllEmployees() {
         return Collections.unmodifiableCollection(employeeMap.values());
     }
-
-    private String getFIO(String firstName, String secondName) {
-        return String.format("%s %s", firstName, secondName);
-    }
-
 }
