@@ -5,13 +5,11 @@ import pro.sky.java.homework25.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.java.homework25.exceptions.EmployeeNotFoundException;
 import pro.sky.java.homework25.exceptions.EmployeeStorageIsFullException;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private static final int MAX_EMPLOYEE = 5;
+    private static final int MAX_EMPLOYEE = 15;
     private final List<Employee> employees = new ArrayList<>(MAX_EMPLOYEE);
     @Override
     public Employee add(String firstName, String lastName) {
@@ -47,5 +45,4 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Collection<Employee> getAllEmployees() {
         return Collections.unmodifiableCollection(employees);
     }
-
 }
