@@ -1,19 +1,20 @@
 package pro.sky.java.homework25.controler;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pro.sky.java.homework25.service.Employee;
-import pro.sky.java.homework25.service.EmployeeServiceDepImpl;
+import pro.sky.java.homework25.service.EmployeeServiceDep;
 
 import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/departments")
 public class EmployeeControllerDep {
-    private final EmployeeServiceDepImpl serviceDep;
-
-    public EmployeeControllerDep(EmployeeServiceDepImpl serviceDep) {
+    private final EmployeeServiceDep serviceDep;
+    @Autowired
+    public EmployeeControllerDep(EmployeeServiceDep serviceDep) {
         this.serviceDep = serviceDep;
     }
     @GetMapping("/add")
