@@ -18,8 +18,9 @@ public class Employee {
     }
 
     public Employee(String firstName, String lastName) {
-        this.firstName = check(firstName);
-        this.lastName = check(lastName);
+        validateInput(firstName, lastName);
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
     }
 
     public String getFirstName() {
@@ -46,11 +47,10 @@ public class Employee {
         this.salary = salary;
     }
 
-    private static String check(String s) {
-        if (!StringUtils.isAlpha(s)) {
-            throw new EmployeeWrongName(String.format("Wrong name: %s", s));
+    private void validateInput(String firstName,String lastName) {
+        if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(lastName)) {
+            throw new EmployeeWrongName(String.format("Wrong input: %s %s", firstName, lastName));
         }
-        return StringUtils.upperCase(StringUtils.left(s, 1)) + StringUtils.substring(s, 1);
     }
 
     @Override
