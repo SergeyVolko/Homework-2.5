@@ -1,5 +1,8 @@
 package pro.sky.java.homework25.service;
 
+import org.apache.commons.lang3.StringUtils;
+import pro.sky.java.homework25.exceptions.EmployeeWrongName;
+
 import java.util.Objects;
 
 public class Employee {
@@ -15,8 +18,9 @@ public class Employee {
     }
 
     public Employee(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        validateInput(firstName, lastName);
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
     }
 
     public String getFirstName() {
@@ -41,6 +45,12 @@ public class Employee {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    private void validateInput(String firstName,String lastName) {
+        if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(lastName)) {
+            throw new EmployeeWrongName(String.format("Wrong input: %s %s", firstName, lastName));
+        }
     }
 
     @Override
