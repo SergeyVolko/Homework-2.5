@@ -45,7 +45,7 @@ public class EmployeeServiceDepImpl implements EmployeeServiceDep {
 
     @Override
     public Map<Integer, List<Employee>> getAllEmployeesInDep() {
-        return service.getAllEmployees().stream().collect(Collectors.groupingBy(e -> e.getDepartment()));
+        return service.getAllEmployees().stream().collect(Collectors.groupingBy(Employee::getDepartment));
     }
 
     private Stream<Employee> getStreamFilter(int department){

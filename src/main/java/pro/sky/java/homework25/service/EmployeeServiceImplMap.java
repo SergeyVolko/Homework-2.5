@@ -10,7 +10,6 @@ import java.util.*;
 @Service
 public class EmployeeServiceImplMap implements EmployeeService {
     private static final int MAX_EMPLOYEE = 5;
-    private final List<Employee> employees = new ArrayList<>(MAX_EMPLOYEE);
     private final Map<String, Employee> employeeMap = new HashMap<>();
 
     @Override
