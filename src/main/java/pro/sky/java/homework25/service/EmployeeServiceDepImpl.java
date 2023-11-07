@@ -48,6 +48,13 @@ public class EmployeeServiceDepImpl implements EmployeeServiceDep {
         return service.getAllEmployees().stream().collect(Collectors.groupingBy(Employee::getDepartment));
     }
 
+    @Override
+    public int getSumSalaryInDepartment(int department) {
+        return getStreamFilter(department)
+                .mapToInt(Employee::getSalary)
+                .sum();
+    }
+
     private Stream<Employee> getStreamFilter(int department){
         return service.getAllEmployees().stream()
                 .filter(e -> e.getDepartment() == department);
