@@ -97,14 +97,28 @@ class EmployeeServiceDepImplTest {
     @Test
     public void whenMaxSalaryIfNotDepartment() {
         when(service.getAllEmployees()).thenReturn(EMPLOYEES_DEP);
-        assertThrows(NoSuchElementException.class,
+        assertThrows(EmployeeNotFoundException.class,
                 () -> serviceDep.getEmployeeWithMaxSalaryInDepartment(DEPARTMENT3));
     }
 
     @Test
     public void whenMinSalaryIfNotDepartment() {
         when(service.getAllEmployees()).thenReturn(EMPLOYEES_DEP);
-        assertThrows(NoSuchElementException.class,
+        assertThrows(EmployeeNotFoundException.class,
                 () -> serviceDep.getEmployeeWithMinSalaryInDepartment(DEPARTMENT3));
+    }
+
+    @Test
+    public void whenMaxSalaryIfNotDepartmentInEmptyEmployeesList() {
+        when(service.getAllEmployees()).thenReturn(EMPLOYEES_EMPTY);
+        assertThrows(EmployeeNotFoundException.class,
+                () -> serviceDep.getEmployeeWithMaxSalaryInDepartment(DEPARTMENT1));
+    }
+
+    @Test
+    public void whenMinSalaryIfNotDepartmentInEmptyEmployeesList() {
+        when(service.getAllEmployees()).thenReturn(EMPLOYEES_EMPTY);
+        assertThrows(EmployeeNotFoundException.class,
+                () -> serviceDep.getEmployeeWithMinSalaryInDepartment(DEPARTMENT1));
     }
 }

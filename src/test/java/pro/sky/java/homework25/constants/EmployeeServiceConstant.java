@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class EmployeeServiceConstant {
-
     public static final String FIRST_NAME1 = "Namea";
     public static final String FIRST_NAME2 = "Nameb";
     public static final String FIRST_NAME3 = "Namec";
@@ -61,6 +60,8 @@ public class EmployeeServiceConstant {
             EMPLOYEE_DEP3,
             EMPLOYEE_DEP4
     );
+
+    public static final Collection<Employee> EMPLOYEES_EMPTY = List.of();
 
     public static final Map<Integer, List<Employee>> DEPARTMENT_EMPLOYEE_MAP = Map.of(
             DEPARTMENT1, List.of(EMPLOYEE_DEP1, EMPLOYEE_DEP2, EMPLOYEE_DEP3),
