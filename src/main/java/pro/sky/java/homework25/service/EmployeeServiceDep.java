@@ -9,4 +9,5 @@ public interface EmployeeServiceDep {
     Employee getEmployeeWithMinSalaryInDepartment(int department);
     List<Employee> getAllEmployeesInDepartment(int department);
     Map<Integer, List<Employee>> getAllEmployeesInDep();
+    int getSumSalaryInDepartment(int department);
 }
